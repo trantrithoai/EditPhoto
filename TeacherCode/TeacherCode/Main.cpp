@@ -19,7 +19,7 @@ int main()
 		cout << "======================= MENU =======================" << endl;
 		cout << "1. Install black and white photos." << endl;
 		cout << "2. Adjust image brightness." << endl;
-		cout << "3. Enlarge image." << endl;
+		cout << "3. Resize image." << endl;
 		cout << "4. Image symmetry." << endl;
 		cout << "5. Image overturned." << endl;
 		cout << "6. Image invert." << endl;
@@ -69,8 +69,16 @@ int main()
 		case 3:
 		{
 			double factor;
-			cout << "How many times do you want to resize the image: ";
-			cin >> factor; 
+			do
+			{
+				cout << "How many times do you want to resize the image: ";
+				cin >> factor;
+
+				if (factor <= 0)
+				{
+					cout << "Error. Please re-enter!!!" << endl;
+				}
+			} while (factor <= 0);
 
 			Bitmap bmp1;
 		    Resize(bmp, bmp1, factor);

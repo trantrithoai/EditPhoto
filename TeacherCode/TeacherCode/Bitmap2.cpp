@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 
 #include "Bitmap.h"
 
@@ -29,6 +29,7 @@ int GetPixel(const Bitmap &bmp, int row, int col, Color &color)
 	color.R = bmp.pixels[offset + 2];
 }
 
+//Hàm chỉnh kích thước ảnh.
 void Resize(const Bitmap &inbmp, Bitmap &outbmp, double factor)
 {
 	outbmp.width = factor * inbmp.width;
@@ -49,6 +50,7 @@ void Resize(const Bitmap &inbmp, Bitmap &outbmp, double factor)
 	}
 }
 
+//Hàm chỉnh độ sáng.
 void AdjustBrightness(const Bitmap &bmp, double factor)
 {
 	for(int row = 0; row < bmp.height; row++)
@@ -76,6 +78,7 @@ void AdjustBrightness(const Bitmap &bmp, double factor)
 		}
 }
 
+//Hàm lấy ảnh trắng đen.
 void BlackWhite(const Bitmap &bmp)
 {
 	for (int row = 0; row < bmp.height; row++)
@@ -95,6 +98,7 @@ void BlackWhite(const Bitmap &bmp)
 	}
 }
 
+//Hàm lấy ảnh đối xứng.
 void Symmetry(const Bitmap &inbmp, Bitmap &outbmp)
 {
 	outbmp.width = inbmp.width;
@@ -112,6 +116,7 @@ void Symmetry(const Bitmap &inbmp, Bitmap &outbmp)
 	}
 }
 
+//Hàm lật ngược ảnh.
 void Overturned(const Bitmap &inbmp, Bitmap &outbmp)
 {
 	outbmp.width = inbmp.width;
@@ -129,6 +134,13 @@ void Overturned(const Bitmap &inbmp, Bitmap &outbmp)
 	}
 }
 
+//Hàm xoay trái ảnh.
+void TurnLeft(const Bitmap &inbmp, Bitmap &outbmp)
+{
+
+}
+
+//Hàm lấy ảnh âm bản.
 void Invert(const Bitmap &bmp)
 {
 	for (int row = 0; row < bmp.height; row++)
