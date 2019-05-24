@@ -90,3 +90,5 @@ void BlackWhite(const Bitmap &bmp)
 			SetPixel(bmp, row, col, color);
 		}
 }
+
+
