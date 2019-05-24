@@ -35,8 +35,9 @@ void Resize(const Bitmap &inbmp, Bitmap &outbmp, double factor)
 	outbmp.height = factor * inbmp.height;
 	outbmp.rowSize = ((3 * outbmp.width + 3)/4)*4;
 	outbmp.pixels = new unsigned char[outbmp.rowSize * outbmp.height];
-	for(int row = 0; row < inbmp.height; row++)
-		for(int col = 0; col < inbmp.width; col++)
+	for (int row = 0; row < inbmp.height; row++)
+	{
+		for (int col = 0; col < inbmp.width; col++)
 		{
 			Color color;
 			GetPixel(inbmp, row, col, color);
@@ -45,6 +46,7 @@ void Resize(const Bitmap &inbmp, Bitmap &outbmp, double factor)
 			SetPixel(outbmp, factor*row + 1, factor*col, color);
 			SetPixel(outbmp, factor*row + 1, factor*col + 1, color);
 		}
+	}
 }
 
 void AdjustBrightness(const Bitmap &bmp, double factor)
@@ -93,16 +95,54 @@ void BlackWhite(const Bitmap &bmp)
 	}
 }
 
-void Swap()
-void Symmetry(const Bitmap &bmp)
+void Symmetry(const Bitmap &inbmp, Bitmap &outbmp)
 {
-	for (int row = bmp.height - 1; row >= 0; row--)
+	outbmp.width = inbmp.width;
+	outbmp.height = inbmp.height;
+	outbmp.rowSize = ((3 * outbmp.width + 3) / 4) * 4;
+	outbmp.pixels = new unsigned char[outbmp.rowSize * outbmp.height];	
+	for (int row = 0; row < inbmp.height; row++)
 	{
-		for (int col = bmp.width - 1; col >= 0; col--)
+		for (int col = inbmp.width - 1; col >= 0; col--)
+		{
+			Color color;
+			GetPixel(inbmp, row, col, color);
+			SetPixel(outbmp, row, inbmp.width - col, color);
+		}
+	}
+}
+
+void Overturned(const Bitmap &inbmp, Bitmap &outbmp)
+{
+	outbmp.width = inbmp.width;
+	outbmp.height = inbmp.height;
+	outbmp.rowSize = ((3 * outbmp.width + 3) / 4) * 4;
+	outbmp.pixels = new unsigned char[outbmp.rowSize * outbmp.height];
+	for (int col = 0; col < inbmp.width; col++)
+	{
+		for (int row = inbmp.height - 1; row >= 0; row--)
+		{
+			Color color;
+			GetPixel(inbmp, row, col, color);
+			SetPixel(outbmp, inbmp.width - row, col, color);
+		}
+	}
+}
+
+void Invert(const Bitmap &bmp)
+{
+	for (int row = 0; row < bmp.height; row++)
+	{
+		for (int col = 0; col < bmp.width; col++)
 		{
 			Color color;
 			GetPixel(bmp, row, col, color);
 
+			color.R = 255 - color.R;
+			color.G = 255 - color.G;
+			color.B = 255 - color.B;
+
+			SetPixel(bmp, row, col, color);
 		}
 	}
 }

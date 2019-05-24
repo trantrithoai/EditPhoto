@@ -25,4 +25,10 @@ void AdjustBrightness(const Bitmap &bmp, double factor);
 void Resize(const Bitmap &inbmp, Bitmap &outbmp, double factor);
 void BlackWhite(const Bitmap &bmp);
 
+void Symmetry(const Bitmap &inbmp, Bitmap &outbmp);
+
+void Overturned(const Bitmap &inbmp, Bitmap &outbmp);
+
+void Invert(const Bitmap &bmp);
+
 #endif
