@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-	const char *inFileName = "MARBLES1.BMP";
+	const char *inFileName = "141.BMP";
 	const char *outFileName = "out.bmp";
 	Bitmap bmp;
 
