@@ -77,6 +77,7 @@ void AdjustBrightness(const Bitmap &bmp, double factor)
 void BlackWhite(const Bitmap &bmp)
 {
 	for (int row = 0; row < bmp.height; row++)
+	{
 		for (int col = 0; col < bmp.width; col++)
 		{
 			Color color;
@@ -86,9 +87,19 @@ void BlackWhite(const Bitmap &bmp)
 			color.R = Middle;
 			color.G = Middle;
 			color.B = Middle;
-		
+
 			SetPixel(bmp, row, col, color);
 		}
+	}
 }
 
-
+void Symmetry(const Bitmap &bmp)
+{
+	for (int row = bmp.height - 1; row >= 0; row--)
+	{
+		for (int col = bmp.width - 1; col >= 0; col--)
+		{
+			
+		}
+	}
+}
