@@ -29,6 +29,11 @@ void Symmetry(const Bitmap &inbmp, Bitmap &outbmp);
 
 void Overturned(const Bitmap &inbmp, Bitmap &outbmp);
 
+void TurnLeft(const Bitmap &inbmp, Bitmap &outbmp);
+
+void TurnRight(const Bitmap &inbmp, Bitmap &outbmp);
+
+
 void Invert(const Bitmap &bmp);
 
 #endif

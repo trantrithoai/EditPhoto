@@ -111,7 +111,7 @@ void Symmetry(const Bitmap &inbmp, Bitmap &outbmp)
 		{
 			Color color;
 			GetPixel(inbmp, row, col, color);
-			SetPixel(outbmp, row, inbmp.width - col, color);
+			SetPixel(outbmp, row, inbmp.width - col - 1, color);
 		}
 	}
 }
@@ -129,15 +129,45 @@ void Overturned(const Bitmap &inbmp, Bitmap &outbmp)
 		{
 			Color color;
 			GetPixel(inbmp, row, col, color);
-			SetPixel(outbmp, inbmp.height - row, col, color);
+			SetPixel(outbmp, inbmp.height - row - 1, col, color);
 		}
 	}
 }
 
 //Hàm xoay trái ảnh.
+void TurnRight(const Bitmap &inbmp, Bitmap &outbmp)
+{
+	outbmp.width = inbmp.height;
+	outbmp.height = inbmp.width;
+	outbmp.rowSize = ((3 * outbmp.width + 3) / 4) * 4;
+	outbmp.pixels = new unsigned char[outbmp.rowSize * outbmp.height];
+	for (int row = 0; row < inbmp.height; row++)	
+	{
+		for (int col = 0; col < inbmp.width; col++)
+		{
+			Color color;
+			GetPixel(inbmp, row, col, color);
+			SetPixel(outbmp, col, outbmp.width - 1 - row, color);
+		}
+	}
+}
+
+//Hàm xoay phải ảnh.
 void TurnLeft(const Bitmap &inbmp, Bitmap &outbmp)
 {
-
+	outbmp.width = inbmp.height;
+	outbmp.height = inbmp.width;
+	outbmp.rowSize = ((3 * outbmp.width + 3) / 4) * 4;
+	outbmp.pixels = new unsigned char[outbmp.rowSize * outbmp.height];
+	for (int row = 0; row < inbmp.height; row++)
+	{
+		for (int col = 0; col < inbmp.width; col++)
+		{
+			Color color;
+			GetPixel(inbmp, row, col, color);
+			SetPixel(outbmp, outbmp.height - 1 - col, row, color);
+		}
+	}
 }
 
 //Hàm lấy ảnh âm bản.
