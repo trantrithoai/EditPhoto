@@ -93,13 +93,16 @@ void BlackWhite(const Bitmap &bmp)
 	}
 }
 
+void Swap()
 void Symmetry(const Bitmap &bmp)
 {
 	for (int row = bmp.height - 1; row >= 0; row--)
 	{
 		for (int col = bmp.width - 1; col >= 0; col--)
 		{
-			
+			Color color;
+			GetPixel(bmp, row, col, color);
+
 		}
 	}
 }
