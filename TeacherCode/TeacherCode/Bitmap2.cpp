@@ -124,7 +124,7 @@ void Overturned(const Bitmap &inbmp, Bitmap &outbmp)
 		{
 			Color color;
 			GetPixel(inbmp, row, col, color);
-			SetPixel(outbmp, inbmp.width - row, col, color);
+			SetPixel(outbmp, inbmp.height - row, col, color);
 		}
 	}
 }
