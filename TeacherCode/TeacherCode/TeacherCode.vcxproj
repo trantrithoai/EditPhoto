@@ -117,7 +117,7 @@
   <ItemGroup>
     <ClCompile Include="Bitmap1.cpp" />
     <ClCompile Include="Bitmap2.cpp" />
-    <ClCompile Include="program.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bitmap.h" />

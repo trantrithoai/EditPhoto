@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "Bitmap.h"
 
 // O(1)
@@ -27,10 +29,10 @@ int GetPixel(const Bitmap &bmp, int row, int col, Color &color)
 	color.R = bmp.pixels[offset + 2];
 }
 
-void Enlarge(const Bitmap &inbmp, Bitmap &outbmp)
+void Resize(const Bitmap &inbmp, Bitmap &outbmp, double factor)
 {
-	outbmp.width = 2 * inbmp.width;
-	outbmp.height = 2 * inbmp.height;
+	outbmp.width = factor * inbmp.width;
+	outbmp.height = factor * inbmp.height;
 	outbmp.rowSize = ((3 * outbmp.width + 3)/4)*4;
 	outbmp.pixels = new unsigned char[outbmp.rowSize * outbmp.height];
 	for(int row = 0; row < inbmp.height; row++)
@@ -38,10 +40,10 @@ void Enlarge(const Bitmap &inbmp, Bitmap &outbmp)
 		{
 			Color color;
 			GetPixel(inbmp, row, col, color);
-			SetPixel(outbmp, 2*row, 2*col, color);
-			SetPixel(outbmp, 2*row, 2*col + 1, color);
-			SetPixel(outbmp, 2*row + 1, 2*col, color);
-			SetPixel(outbmp, 2*row + 1, 2*col + 1, color);
+			SetPixel(outbmp, factor*row, factor*col, color);
+			SetPixel(outbmp, factor*row, factor*col + 1, color);
+			SetPixel(outbmp, factor*row + 1, factor*col, color);
+			SetPixel(outbmp, factor*row + 1, factor*col + 1, color);
 		}
 }
 
