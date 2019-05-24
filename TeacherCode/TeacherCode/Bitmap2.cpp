@@ -71,3 +71,20 @@ void AdjustBrightness(const Bitmap &bmp, double factor)
 			SetPixel(bmp, row, col, color);
 		}
 }
+
+void BlackWhite(const Bitmap &bmp)
+{
+	for (int row = 0; row < bmp.height; row++)
+		for (int col = 0; col < bmp.width; col++)
+		{
+			Color color;
+			GetPixel(bmp, row, col, color);
+
+			int Middle = (color.R + color.G + color.B) / 3;
+			color.R = Middle;
+			color.G = Middle;
+			color.B = Middle;
+		
+			SetPixel(bmp, row, col, color);
+		}
+}

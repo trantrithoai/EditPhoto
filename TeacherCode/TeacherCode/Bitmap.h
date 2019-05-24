@@ -23,5 +23,6 @@ int GetPixel(const Bitmap &bmp, int row, int col, Color &color);
 
 void AdjustBrightness(const Bitmap &bmp, double factor);
 void Enlarge(const Bitmap &inbmp, Bitmap &outbmp);
+void BlackWhite(const Bitmap &bmp);
 
 #endif

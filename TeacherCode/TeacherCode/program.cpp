@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include<conio.h>
 #include "Bitmap.h"
 
@@ -12,7 +12,7 @@ int main()
 	{
 		printf("%dx%d\n", bmp.width, bmp.height);
 		
-		AdjustBrightness(bmp, 2.0);
+		BlackWhite(bmp);
 		
 		if(SaveBitmap(outFileName, bmp))
 		{
@@ -26,6 +26,8 @@ int main()
 		printf("Can not load the bitmap file!!!\n");
 	
 	printf("Bye!\n");
+
+	
 
 	_getch();
 	
