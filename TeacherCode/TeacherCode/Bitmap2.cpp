@@ -123,6 +123,7 @@ void Overturned(const Bitmap &inbmp, Bitmap &outbmp)
 	outbmp.height = inbmp.height;
 	outbmp.rowSize = ((3 * outbmp.width + 3) / 4) * 4;
 	outbmp.pixels = new unsigned char[outbmp.rowSize * outbmp.height];
+
 	for (int col = 0; col < inbmp.width; col++)
 	{
 		for (int row = inbmp.height - 1; row >= 0; row--)
@@ -185,6 +186,290 @@ void Invert(const Bitmap &bmp)
 			color.B = 255 - color.B;
 
 			SetPixel(bmp, row, col, color);
+		}
+	}
+}
+
+//Làm mờ ảnh bitmap.
+void Blur(const Bitmap &bmp)
+{
+	for (int i = 0; i < bmp.height; i++)
+	{
+		for (int j = 0; j < bmp.width; j++)
+		{
+			/*
+				X 0 0
+				0 0 0
+				0 0 0
+			*/
+			if (i == 0)
+			{
+				if (j == 0)
+				{
+					Color color;
+					GetPixel(bmp, i, j, color);
+
+					Color color1;
+					GetPixel(bmp, i, j + 1, color1);
+
+					Color color2;
+					GetPixel(bmp, i + 1, j + 1, color2);
+
+					Color color3;
+					GetPixel(bmp, i + 1, j, color3);
+
+					color.B = (color.B + color1.B + color2.B + color3.B) / 4;
+					color.G = (color.G + color1.G + color2.G + color3.G) / 4;
+					color.R = (color.R + color1.R + color2.R + color3.R) / 4;
+
+					SetPixel(bmp, i, j, color);
+				}
+				/*
+					0 0 X
+					0 0 0
+					0 0 0
+				*/
+				else if (j == bmp.width - 1)
+				{
+					Color color;
+					GetPixel(bmp, i, j, color);
+
+					Color color1;
+					GetPixel(bmp, i, j - 1, color1);
+
+					Color color2;
+					GetPixel(bmp, i + 1, j, color2);
+
+					Color color3;
+					GetPixel(bmp, i + 1, j - 1, color3);
+
+					color.B = (color.B + color1.B + color2.B + color3.B) / 4;
+					color.G = (color.G + color1.G + color2.G + color3.G) / 4;
+					color.R = (color.R + color1.R + color2.R + color3.R) / 4;
+
+					SetPixel(bmp, i, j, color);
+				}
+				/*
+					0 X 0
+					0 0 0
+					0 0 0
+				*/
+				else
+				{
+					Color color;
+					GetPixel(bmp, i, j, color);
+
+					Color color1;
+					GetPixel(bmp, i, j - 1, color1);
+
+					Color color2;
+					GetPixel(bmp, i, j + 1, color2);
+
+					Color color3;
+					GetPixel(bmp, i + 1, j - 1, color3);
+
+					Color color4;
+					GetPixel(bmp, i + 1, j, color4);
+
+					Color color5;
+					GetPixel(bmp, i + 1, j + 1, color5);
+
+					color.B = (color.B + color1.B + color2.B + color3.B + color4.B + color5.B) / 6;
+					color.G = (color.G + color1.G + color2.G + color3.G + color4.G + color5.G) / 6;
+					color.R = (color.R + color1.R + color2.R + color3.R + color4.R + color5.R) / 6;
+
+					SetPixel(bmp, i, j, color);
+				}
+			}
+			else if (i > 0 && i < bmp.height - 1)
+			{
+				/*
+					0 0 0
+					X 0 0
+					0 0 0
+				*/
+				if (j == 0)
+				{
+					Color color;
+					GetPixel(bmp, i, j, color);
+
+					Color color1;
+					GetPixel(bmp, i - 1, j, color1);
+
+					Color color2;
+					GetPixel(bmp, i - 1, j + 1, color2);
+
+					Color color3;
+					GetPixel(bmp, i, j + 1, color3);
+
+					Color color4;
+					GetPixel(bmp, i + 1, j + 1, color4);
+
+					Color color5;
+					GetPixel(bmp, i + 1, j, color5);
+
+					color.B = (color.B + color1.B + color2.B + color3.B + color4.B + color5.B) / 6;
+					color.G = (color.G + color1.G + color2.G + color3.G + color4.G + color5.G) / 6;
+					color.R = (color.R + color1.R + color2.R + color3.R + color4.R + color5.R) / 6;
+
+					SetPixel(bmp, i, j, color);
+				}
+				/*
+				0 0 0
+				0 0 X
+				0 0 0
+				*/
+				else if (j == bmp.width - 1)
+				{
+					Color color;
+					GetPixel(bmp, i, j, color);
+
+					Color color1;
+					GetPixel(bmp, i - 1, j, color1);
+
+					Color color2;
+					GetPixel(bmp, i - 1, j - 1, color2);
+
+					Color color3;
+					GetPixel(bmp, i, j - 1, color3);
+
+					Color color4;
+					GetPixel(bmp, i + 1, j + 1, color4);
+
+					Color color5;
+					GetPixel(bmp, i + 1, j, color5);
+
+					color.B = (color.B + color1.B + color2.B + color3.B + color4.B + color5.B) / 6;
+					color.G = (color.G + color1.G + color2.G + color3.G + color4.G + color5.G) / 6;
+					color.R = (color.R + color1.R + color2.R + color3.R + color4.R + color5.R) / 6;
+
+					SetPixel(bmp, i, j, color);
+				}
+				/*
+				0 0 0
+				0 X 0
+				0 0 0
+				*/
+				else
+				{
+					Color color;
+					GetPixel(bmp, i, j, color);
+
+					Color color1;
+					GetPixel(bmp, i - 1, j - 1, color1);
+
+					Color color2;
+					GetPixel(bmp, i - 1, j, color2);
+
+					Color color3;
+					GetPixel(bmp, i - 1, j + 1, color3);
+
+					Color color4;
+					GetPixel(bmp, i, j - 1, color4);
+
+					Color color5;
+					GetPixel(bmp, i, j + 1, color5);
+
+					Color color6;
+					GetPixel(bmp, i + 1, j - 1, color6);
+
+					Color color7;
+					GetPixel(bmp, i + 1, j, color7);
+
+					Color color8;
+					GetPixel(bmp, i + 1, j + 1, color8);
+
+					color.B = (color.B + color1.B + color2.B + color3.B + color4.B + color5.B + color6.B + color7.B + color8.B) / 9;
+					color.G = (color.G + color1.G + color2.G + color3.G + color4.G + color5.G + color6.G + color7.G + color8.G) / 9;
+					color.R = (color.R + color1.R + color2.R + color3.R + color4.R + color5.R + color6.R + color7.R + color8.R) / 9;
+
+					SetPixel(bmp, i, j, color);
+				}
+			}
+			else
+			{
+				/*
+					0 0 0
+					0 0 0
+					X 0 0
+				*/
+				if (j == 0)
+				{
+					Color color;
+					GetPixel(bmp, i, j, color);
+
+					Color color1;
+					GetPixel(bmp, i - 1, j, color1);
+
+					Color color2;
+					GetPixel(bmp, i - 1, j + 1, color2);
+
+					Color color3;
+					GetPixel(bmp, i, j + 1, color3);
+
+					color.B = (color.B + color1.B + color2.B + color3.B) / 4;
+					color.G = (color.G + color1.G + color2.G + color3.G) / 4;
+					color.R = (color.R + color1.R + color2.R + color3.R) / 4;
+
+					SetPixel(bmp, i, j, color);
+				}
+				/*
+					0 0 0
+					0 0 0
+					0 0 X
+				*/
+				else if (j == bmp.width - 1)
+				{
+					Color color;
+					GetPixel(bmp, i, j, color);
+
+					Color color1;
+					GetPixel(bmp, i - 1, j, color1);
+
+					Color color2;
+					GetPixel(bmp, i - 1, j - 1, color2);
+
+					Color color3;
+					GetPixel(bmp, i, j - 1, color3);
+
+					color.B = (color.B + color1.B + color2.B + color3.B) / 4;
+					color.G = (color.G + color1.G + color2.G + color3.G) / 4;
+					color.R = (color.R + color1.R + color2.R + color3.R) / 4;
+
+					SetPixel(bmp, i, j, color);
+				}
+				/*
+					0 0 0
+					0 0 0
+					0 X 0
+				*/
+				else
+				{
+					Color color;
+					GetPixel(bmp, i, j, color);
+
+					Color color1;
+					GetPixel(bmp, i, j - 1, color1);
+
+					Color color2;
+					GetPixel(bmp, i, j + 1, color2);
+
+					Color color3;
+					GetPixel(bmp, i - 1, j - 1, color3);
+
+					Color color4;
+					GetPixel(bmp, i - 1, j, color4);
+
+					Color color5;
+					GetPixel(bmp, i - 1, j + 1, color5);
+
+					color.B = (color.B + color1.B + color2.B + color3.B + color4.B + color5.B) / 6;
+					color.G = (color.G + color1.G + color2.G + color3.G + color4.G + color5.G) / 6;
+					color.R = (color.R + color1.R + color2.R + color3.R + color4.R + color5.R) / 6;
+
+					SetPixel(bmp, i, j, color);
+				}
+			}
 		}
 	}
 }

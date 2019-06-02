@@ -1,4 +1,4 @@
-#ifndef _BITMAP_
+﻿#ifndef _BITMAP_
 #define _BITMAP_
 
 struct Bitmap
@@ -33,7 +33,9 @@ void TurnLeft(const Bitmap &inbmp, Bitmap &outbmp);
 
 void TurnRight(const Bitmap &inbmp, Bitmap &outbmp);
 
-
 void Invert(const Bitmap &bmp);
+
+//Làm mờ ảnh bitmap.
+void Blur(const Bitmap &bmp);
 
 #endif
