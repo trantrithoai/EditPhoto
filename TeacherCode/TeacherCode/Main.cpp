@@ -29,8 +29,7 @@ int main()
 			cout << "6. Image invert." << endl;
 			cout << "7. Rotate left image." << endl;
 			cout << "8. Rotate right image." << endl;
-			cout << "9. Blur image." << endl;
-			cout << "10. Reset image." << endl;
+			cout << "9. Reset image." << endl;
 			cout << "The rest is leaving the program!!!" << endl;
 			cout << "======================= END =======================\n\n" << endl;
 
@@ -181,21 +180,6 @@ int main()
 				DisposeBitmap(bmp1);
 			}
 			else if (choice == 9)
-			{
-				Blur(bmp);
-
-				cout << "Completed!!!" << endl;
-
-
-				if (SaveBitmap(outFileName, bmp))
-				{
-				}
-				else
-					printf("Can not save the bitmap file!!!\n");
-
-				DisposeBitmap(bmp);
-			}
-			else if (choice == 10)
 			{
 			    LoadBitmap(inFileName, bmp);
 				cout << "Completed!!!" << endl;
